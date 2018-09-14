@@ -44,4 +44,77 @@ describe('Campaign', () => {
         assert.ok(factory.options.address);
         assert.ok(campaign.options.address);
     });
+
+    //@dev:
+    it('marks caller as the campaihn manager', async () => {
+        const manager = await campaign.methods.manager().call()
+        assert.equal(accounts[0], manager);
+    });
+
+    it('allows people to contribute $$ and marks them as approvers', async () => {
+        await campaign.methods.contribute().send({
+            value:'200',
+            from: accounts[1]
+        });
+        const isContributor = await campaign.methods.approvers(accounts[1]).call()
+        assert(isContributor);
+    });
+
+    it('it requires minimun contribution', async () => {
+        try {
+           await campaign.methods.contribute().send({
+               value: '5',                      // value should be < than minimum amount we defined earlier
+               from: accounts[1]
+           }); 
+           assert(false);                       //if ever this function get executed , terminate 
+        } catch (err) {
+            assert(err);                        //make shure we have an error object 
+        }
+    });
+
+    //@dev: assert that manager has acability to make an request
+    it('allows a manger to make a payment request', async () => {
+        await campaign.methods
+        .createRequest('test', '100', accounts[1])
+        .send({
+            from: accounts[0],
+            gas: '1000000'
+        });
+
+        const request = await campaign.methods.requests(0).call();
+
+        assert.equal('test', request.description);
+    });
+
+    //@dev: test which will finilize Campaign application from the start to the end
+    it('it processes requests', async () => {
+      await campaign.methods.contribute().send({
+          from: accounts[0],
+          value: web3.utils.toWei('10','ether')
+      });
+
+      await campaign.methods
+      .createRequest('A',web3.utils.toWei('5','ether'),accounts[1])
+      .send({
+          from:accounts[0],
+          gas:'1000000'
+        });
+
+        await campaign.methods.approveRequest(0).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
+
+        await campaign.methods.finalizeRequest(0).send({
+            from: accounts[0],
+            gas:'1000000'
+        });
+
+        let balance = await web3.eth.getBalance(accounts[1]);
+        balance = web3.utils.fromWei(balance, 'ether');               //balance from  Wei to ETH
+        balance = parseFloat(balance);                              //take string and turn it yo decimal number
+        var _balance = console.log(balance);
+        assert( balance > _balancece )
+    });
+
 });

@@ -73,11 +73,11 @@ contract Campaign {
         request.approvalCount++;
     }
     
-    function finalizeRequst(uint index) public restricted {
-        Request storage request = requests[index];  //verible asign to Request struct
+    function finalizeRequest(uint index) public restricted {
+        Request storage request = requests[index];              //verible asign to Request struct
         
-        require(request.approvalCount > approversCount/2 ); //approvalCount must be more than 50% 
-        require(!request.complete);                 //check that this request is not complete
+        require(request.approvalCount > approversCount/2 );     //approvalCount must be more than 50% 
+        require(!request.complete);                             //check that this request has not been completed before
 
         request.recipient.transfer(request.value);
         request.complete = true;
