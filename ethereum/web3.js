@@ -1,3 +1,4 @@
+//@dev: Configure web3 with provider from MetaMask
 import Web3 from'web3';
 
 var provider = (window.web3.currentProvider);

@@ -1,11 +1,20 @@
-import React from 'react';
+import React,{Component} from 'react';
+import factory from '../ethereum/factory';
+
+class CampaignIndex extends Component {
+    async componentDidMount() {
+        const campaign = await factory.methods.getDeployedCampaign().call();
+        console.log(campaign)
+    }
+
+    render() {
+        return <h1>Campaign Index page</h1>
+    }
+}
 
 
-//@dev: Configure web3 with provider from MetaMask
-//@dev: Tell web3 that a deployed copy of the 'campaignFactory' exist
+
 //@dev: Use Factory instance to retreive a list of deployed campaigns
 //@dev: use React to show something about each campaign
 
-export default () => {
-    return <h1>This is the campaign list page.</h1>
-};
+export default CampaignIndex ;
