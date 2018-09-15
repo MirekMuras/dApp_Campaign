@@ -88,9 +88,9 @@ describe('Campaign', () => {
 
     //@dev: test which will finilize Campaign application from the start to the end
     it('it processes requests', async () => {
-      await campaign.methods.contribute().send({
+      await campaign.methods.contribute().send({                 //contribute some money to campaign
           from: accounts[0],
-          value: web3.utils.toWei('10','ether')
+          value: web3.utils.toWei('10','ether')                  //send and convert to ETH to transaction
       });
 
       await campaign.methods
@@ -100,21 +100,23 @@ describe('Campaign', () => {
           gas:'1000000'
         });
 
+        //@dev: vote to approve request
         await campaign.methods.approveRequest(0).send({
             from: accounts[0],
             gas: '1000000'
         });
 
+        //@dev:
         await campaign.methods.finalizeRequest(0).send({
-            from: accounts[0],
+            from: accounts[0],                              //only manager can finalize the request
             gas:'1000000'
         });
 
-        let balance = await web3.eth.getBalance(accounts[1]);
-        balance = web3.utils.fromWei(balance, 'ether');               //balance from  Wei to ETH
-        balance = parseFloat(balance);                              //take string and turn it yo decimal number
-        var _balance = console.log(balance);
-        assert( balance > _balancece )
+        let balance = await web3.eth.getBalance(accounts[1]);        //balance = amount of money account[1] has
+        balance = web3.utils.fromWei(balance, 'ether');              //convert balance from  Wei to ETH
+        balance = parseFloat(balance);                               //take string and turn it yo decimal number
+        console.log(balance);
+        assert( balance > 104)
     });
 
 });
