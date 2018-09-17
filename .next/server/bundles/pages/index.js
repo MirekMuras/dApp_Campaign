@@ -102,8 +102,20 @@ var instance = new __WEBPACK_IMPORTED_MODULE_0__web3__["a" /* default */].eth.Co
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web3__);
 //@dev: Configure web3 with provider from MetaMask
 
-var provider = window.web3.currentProvider;
-var web3 = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a(provider);
+/*var provider = (window.web3.currentProvider);
+const web3 = new Web3(provider);*/
+
+var web3;
+
+if (typeof windows !== 'undefined' && typeof window.web3 !== 'undefined') {
+  // we are in the browser AND MetaMask is running.
+  web3 = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a(window.web3.currentProvider);
+} else {
+  // we are on the server 'OR' the user is  not running MetaMask
+  var provider = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a.providers.HttpProvider('https://rinkeby.infura.io/v3/e9c3ef2192494de8a3ba773a8526b459');
+  web3 = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a(provider);
+}
+
 /* harmony default export */ __webpack_exports__["a"] = (web3);
 
 /***/ }),
@@ -163,7 +175,7 @@ function (_Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_2__ethereum_factory__["a" /* default */].methods.getDeployedCampaign().call();
+                return __WEBPACK_IMPORTED_MODULE_2__ethereum_factory__["a" /* default */].methods.getDeployedCampaigns().call();
 
               case 2:
                 campaign = _context.sent;

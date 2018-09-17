@@ -3,12 +3,12 @@ import factory from '../ethereum/factory';
 
 class CampaignIndex extends Component {
     async componentDidMount() {
-        const campaign = await factory.methods.getDeployedCampaign().call();
-        console.log(campaign)
+        const campaign = await factory.methods.getDeployedCampaigns().call()
+        console.log(campaign);
     }
 
     render() {
-        return <h1>Campaign Index page</h1>
+        return <h1>Campaign Index page</h1>;
     }
 }
 
