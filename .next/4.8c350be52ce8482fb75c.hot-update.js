@@ -44,9 +44,20 @@ function (_Component) {
   }
 
   _createClass(CampaignIndex, [{
-    key: "componentDidMount",
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14
+        }
+      }, this.props.campaign[0]);
+    }
+  }], [{
+    key: "getInitialProps",
+    //@dev-info: statis - 
     value: function () {
-      var _componentDidMount = _asyncToGenerator(
+      var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee() {
         var campaign;
@@ -59,7 +70,9 @@ function (_Component) {
 
               case 2:
                 campaign = _context.sent;
-                console.log(campaign);
+                return _context.abrupt("return", {
+                  campaign: campaign
+                });
 
               case 4:
               case "end":
@@ -69,20 +82,10 @@ function (_Component) {
         }, _callee, this);
       }));
 
-      return function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
+      return function getInitialProps() {
+        return _getInitialProps.apply(this, arguments);
       };
     }()
-  }, {
-    key: "render",
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11
-        }
-      }, "Campaign Index page");
-    }
   }]);
 
   return CampaignIndex;
@@ -114,4 +117,4 @@ function (_Component) {
 /***/ })
 
 })
-//# sourceMappingURL=4.04f6bcc7d08475cf7956.hot-update.js.map
+//# sourceMappingURL=4.8c350be52ce8482fb75c.hot-update.js.map
