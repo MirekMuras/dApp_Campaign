@@ -35,8 +35,9 @@ var instance = new __WEBPACK_IMPORTED_MODULE_0__web3__["a" /* default */].eth.Co
 
 /*var provider = (window.web3.currentProvider);
 const web3 = new Web3(provider);*/
+//@dwv-info: 'let' means redifine the variable
 
-var web3;
+var web3; //@dev-info: 'typeof' means the string is undefined on server 
 
 if (typeof windows !== 'undefined' && typeof window.web3 !== 'undefined') {
   // we are in the browser AND MetaMask is running.
@@ -58980,16 +58981,16 @@ function (_Component) {
   _createClass(CampaignIndex, [{
     key: "render",
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 15
         }
       }, this.props.campaign[0]);
     }
   }], [{
     key: "getInitialProps",
-    //@dev-info: statis - 
+    //@dev-info: statis - define a class function, without instantiating class
     value: function () {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
@@ -59004,11 +59005,12 @@ function (_Component) {
 
               case 2:
                 campaign = _context.sent;
+                console.log(campaign);
                 return _context.abrupt("return", {
                   campaign: campaign
                 });
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
