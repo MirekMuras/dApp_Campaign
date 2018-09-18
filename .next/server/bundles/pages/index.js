@@ -131,6 +131,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ethereum_factory__ = __webpack_require__("./ethereum/factory.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__);
 
 var _jsxFileName = "C:\\Users\\HP\\Desktop\\BLOCKCHAIN\\development\\CAMPAIGN\\dApp_Campaign\\pages\\index.js";
 
@@ -152,6 +154,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+ //import 'semantic-ui-css/semantic.min.css';
 
 var CampaignIndex =
 /*#__PURE__*/
@@ -165,14 +168,37 @@ function (_Component) {
   }
 
   _createClass(CampaignIndex, [{
+    key: "renderCampaign",
+    value: function renderCampaign() {
+      var items = this.props.campaign.map(function (address) {
+        return {
+          header: address,
+          description: __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 19
+            }
+          }, "Text"),
+          fluid: true
+        };
+      });
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["Card"].Group, {
+        items: items,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 24
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 28
         }
-      }, this.props.campaign[0]);
+      }, this.renderCampaign());
     }
   }], [{
     key: "getInitialProps",
@@ -191,12 +217,11 @@ function (_Component) {
 
               case 2:
                 campaign = _context.sent;
-                console.log(campaign);
                 return _context.abrupt("return", {
                   campaign: campaign
                 });
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -238,6 +263,13 @@ module.exports = require("@babel/runtime/regenerator");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "semantic-ui-react":
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react");
 
 /***/ }),
 

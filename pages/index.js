@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import factory from '../ethereum/factory';
+import {card, Card} from 'semantic-ui-react';
+//import 'semantic-ui-css/semantic.min.css';
 
 class CampaignIndex extends Component {
     //@dev-info: statis - define a class function, without instantiating class
@@ -7,12 +9,23 @@ class CampaignIndex extends Component {
          const campaign = await factory.methods
         .getDeployedCampaigns()
         .call();
-        console.log(campaign);
         return{campaign};
     }
 
+    renderCampaign() {
+        const items = this.props.campaign.map(address => {
+            return {
+                header: address,
+                description:<a>Text</a>,
+                fluid: true
+            };
+        });
+
+        return <Card.Group items={items} />;
+    }
+
     render() {
-        return <div>{this.props.campaign[0]}</div>;
+        return <div>{this.renderCampaign()}</div>;
     }
 }
 
