@@ -32,6 +32,7 @@ contract Campaign {
     mapping(address => bool) public approvers;
     uint public approversCount;
     
+    //@dev: Only manager of the contract restriction
     modifier restricted() {
         require(msg.sender  == manager);
         _;
