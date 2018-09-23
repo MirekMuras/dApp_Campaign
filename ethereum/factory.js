@@ -7,5 +7,4 @@ const instance = new web3.eth.Contract(
     '0x9032004322a385138340EAe828c3D5d09EdC7A78'
 );
 
-
 export default instance;
