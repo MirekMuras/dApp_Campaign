@@ -1,5 +1,6 @@
 pragma solidity ^0.4.17;
 
+/** @title Campaign factory creating a new Campaigns */
 contract CampaignFactory {
     address[] public deployedCampaign;                                          //addresses of all deployed campaigns
     
