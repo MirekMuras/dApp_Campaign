@@ -228,6 +228,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ethereum_web3__ = __webpack_require__("./ethereum/web3.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Layout__ = __webpack_require__("./components/Layout.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ethereum_factory__ = __webpack_require__("./ethereum/factory.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes__ = __webpack_require__("./routes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__routes__);
 
 var _jsxFileName = "C:\\Users\\HP\\Desktop\\BLOCKCHAIN\\development\\CAMPAIGN\\dApp_Campaign\\pages\\campaigns\\new.js";
 
@@ -246,6 +248,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -275,7 +278,8 @@ function (_Component) {
       writable: true,
       value: {
         minimumContribution: '',
-        errorMessage: ''
+        errorMessage: '',
+        loading: false
       }
     }), Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
       configurable: true,
@@ -291,35 +295,47 @@ function (_Component) {
               switch (_context.prev = _context.next) {
                 case 0:
                   event.preventDefault();
-                  _context.prev = 1;
-                  _context.next = 4;
+
+                  _this.setState({
+                    loading: true,
+                    errorMessage: ''
+                  });
+
+                  _context.prev = 2;
+                  _context.next = 5;
                   return __WEBPACK_IMPORTED_MODULE_3__ethereum_web3__["a" /* default */].eth.getAccounts();
 
-                case 4:
+                case 5:
                   accounts = _context.sent;
-                  _context.next = 7;
+                  _context.next = 8;
                   return __WEBPACK_IMPORTED_MODULE_5__ethereum_factory__["a" /* default */].methods.createCampaign(_this.state.minimumContribution).send({
                     from: accounts[0]
                   });
 
-                case 7:
-                  _context.next = 12;
+                case 8:
+                  __WEBPACK_IMPORTED_MODULE_6__routes__["Router"].pushRout('/');
+                  _context.next = 14;
                   break;
 
-                case 9:
-                  _context.prev = 9;
-                  _context.t0 = _context["catch"](1);
+                case 11:
+                  _context.prev = 11;
+                  _context.t0 = _context["catch"](2);
 
-                  _this.state({
+                  _this.setState({
                     errorMessage: _context.t0.message
                   });
 
-                case 12:
+                case 14:
+                  _this.setState({
+                    loading: false
+                  });
+
+                case 15:
                 case "end":
                   return _context.stop();
               }
             }
-          }, _callee, this, [[1, 9]]);
+          }, _callee, this, [[2, 11]]);
         }));
 
         return function value(_x) {
@@ -337,29 +353,29 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Layout__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 38
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 39
         }
       }, "Create a Campaign !"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["Form"], {
         onSubmit: this.onSubmit,
-        error: this.state.errorMessage,
+        error: !!this.state.errorMessage,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 41
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["Form"].Field, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 42
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 43
         }
       }, "Minimum Contribution"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["Input"], {
         placeholder: "Enter minimum of 100 WEI here",
@@ -373,7 +389,7 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 44
         }
       })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["Message"], {
         error: true,
@@ -381,14 +397,15 @@ function (_Component) {
         content: this.state.errorMessage,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 55
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["Button"], {
         type: "Create",
         primary: true,
+        loading: this.state.loading,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 57
         }
       }, "Create !")));
     }
@@ -398,6 +415,18 @@ function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (CampaignNew);
+
+/***/ }),
+
+/***/ "./routes.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+//@info: Defines our different routes
+//@URL:https://github.com/fridays/next-routes
+var routes = __webpack_require__("next-routes")(); //routes.add('...','...')
+
+
+module.exports = routes;
 
 /***/ }),
 
@@ -413,6 +442,13 @@ module.exports = __webpack_require__("./pages/campaigns/new.js");
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
+/***/ "next-routes":
+/***/ (function(module, exports) {
+
+module.exports = require("next-routes");
 
 /***/ }),
 
