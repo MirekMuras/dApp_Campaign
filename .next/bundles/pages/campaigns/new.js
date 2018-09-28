@@ -101850,10 +101850,8 @@ function (_Component) {
 //@info: Defines our different custom routes
 //@URL:https://github.com/fridays/next-routes
 var routes = __webpack_require__("./node_modules/next-routes/dist/index.js")();
-/*routes
-.add('...','...')*/
 
-
+routes.add('/campaigns/new', '/campaigns/new').add('/campaigns/:address', '/campaigns/show');
 module.exports = routes;
 
 /***/ }),
