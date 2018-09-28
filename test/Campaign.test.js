@@ -8,7 +8,7 @@ const CompiledCampaign = require('../ethereum/build/Campaign.json');
 
 //@dev: list of all accounts on the local network
 let accounts;
-//@dev: refrence to instance of the compiled 'factory' contracts interface we created
+//@dev: refrence to instance of the compiled 'campaign' contracts interface we created
 let factory;
 //@dev: test instance of the campaing and assign it to the variables
 let campaignAddress;
@@ -26,7 +26,9 @@ beforeEach(async () => {
         gas: '1000000'
     });
 
-    await factory.methods.createCampaign('100').send({
+    await factory.methods
+    .createCampaign('100')
+    .send({
         from: accounts[0],
         gas: '1000000'
     });

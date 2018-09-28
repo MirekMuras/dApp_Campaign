@@ -12,21 +12,23 @@ class CampaignNew extends Component {
         loading:false
     };
 
-    //@dev: event-handeler method
+    //@dev: event-handler method
     onSubmit = async event => {
         event.preventDefault();
 
         this.setState({ loading: true, errorMessage:''});
 
         try {
-            const accounts = await web3.eth.getAccounts();
-            await factory.methods
+            const accounts = await web3.eth.getAccounts();      //lists of all accounts
+            await factory.methods                               // create campaign on the contract
                 .createCampaign(this.state.minimumContribution)
-                .send({ from: accounts[0] });
+                .send({ 
+                    from:accounts[0]
+                });
                 
-                Router.pushRout('/');
-        } catch (error) {
-            this.setState({ errorMessage: error.message });
+                Router.pushRoute('/');                          //redirect user to index rout
+        } catch (err) {
+            this.setState({ errorMessage: err.message });
         }
 
         this.setState({ loading: false})
@@ -39,6 +41,7 @@ class CampaignNew extends Component {
                 <h3>Create a Campaign !</h3>
 
                 <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
+                    
                     <Form.Field>
                         <label>Minimum Contribution</label>
                         <Input 

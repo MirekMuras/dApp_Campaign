@@ -1,17 +1,19 @@
+
+/** @info: two smart contracts ( Campaign & campaignFactory) */
 pragma solidity ^0.4.17;
 
-/** @title Campaign factory creating a new Campaigns */
+/** @dev Campaign factory creating a new Campaigns */
 contract CampaignFactory {
     address[] public deployedCampaign;                                          //addresses of all deployed campaigns
     
    
-    //@dev: Deploys a new instance of a Campaign and store the resulting address
+    /** @dev: Deploys a new instance of a Campaign and store the resulting address*/
     function createCampaign(uint minimum) public {
         address newCampaign = new Campaign(minimum, msg.sender);               //return a address af newly created campaign
         deployedCampaign.push(newCampaign);
     }
     
-    //@dev: returns a list of all deployed campaigns
+    /** @dev: returns a list of all deployed campaigns*/
     function getDeployedCampaigns() public view returns(address[]) {
         return deployedCampaign;                                               //return list of all campaigns which has been created
     }

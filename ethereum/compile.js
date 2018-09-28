@@ -2,7 +2,7 @@ const path = require('path');
 const solc = require('solc');
 const fs = require('fs-extra');
 
-//@dev: Delete entire 'build' folder, while we compile
+//@dev: Delete entire 'build' folder, while we compile from compile.js
 const buildPath = path.resolve(__dirname, 'build');
 fs.removeSync(buildPath);
 
@@ -11,7 +11,7 @@ fs.removeSync(buildPath);
 const campaignPath = path.resolve(__dirname,'contracts', 'Campaign.sol');
 const source = fs.readFileSync(campaignPath, 'utf8');
 
-//@dev: Compile both contracts at 'Campaign' and 'CampaignFactory' with solidity compiler, and write them both as JSON files
+//@dev: Compile both contracts at 'Campaign' with solidity compiler, and write them both as JSON files
 const output = solc.compile(source, 1).contracts;
 
 //@dev: recreate the build folder

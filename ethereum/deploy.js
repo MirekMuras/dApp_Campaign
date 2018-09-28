@@ -21,7 +21,7 @@ const deploy = async() => {
     //@dev: instance of the contract
     const result = await new web3.eth.Contract(JSON.parse(compileFactory.interface))
     .deploy({
-        data: '0x' + compileFactory.bytecode,
+        data: '0x' + compileFactory.bytecode
     })
     .send({
         gas:'1000000',
