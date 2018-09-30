@@ -14,7 +14,7 @@ if (typeof windows !== 'undefined' && typeof window.web3 !== 'undefined' ) {
 } else {
     // we are on the server 'OR' the user is not running MetaMask
     const provider = new Web3.providers.HttpProvider(
-    'https://rinkeby.infura.io/v3/be1c6e496d9a4538b1e3ef56cfd32bdd'    
+    'https://rinkeby.infura.io/v3/e9c3ef2192494de8a3ba773a8526b459'    
     );
     web3 = new Web3(provider);
 }

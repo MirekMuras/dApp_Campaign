@@ -1412,13 +1412,11 @@ function (_Component) {
 //@info: Defines our different custom routes
 //@URL:https://github.com/fridays/next-routes
 var routes = __webpack_require__("./node_modules/next-routes/dist/index.js")();
-/*routes
-.add('...','...')*/
 
-
+routes.add('/campaigns/new', '/campaigns/new').add('/campaigns/:address', '/campaigns/show');
 module.exports = routes;
 
 /***/ })
 
 })
-//# sourceMappingURL=4.e589f3d4febefd99766d.hot-update.js.map
+//# sourceMappingURL=4.aa1433615b21f79def1f.hot-update.js.map
