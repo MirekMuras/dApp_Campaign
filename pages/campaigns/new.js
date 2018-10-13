@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Message} from 'semantic-ui-react';
-import web3 from '../../ethereum/web3';
+import { Button, Form, Input, Message } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
-import {Router} from '../../routes';
+import web3 from '../../ethereum/web3';
+import { Router } from '../../routes';
 
 class CampaignNew extends Component {
     state = {
         minimumContribution:'',
         errorMessage:'',
-        loading:false
+        loading: false
     };
 
     //@dev: event-handler method
-    onSubmit = async event => {
+    onSubmit = async (event)=> {
         event.preventDefault();
 
         this.setState({ loading: true, errorMessage:''});
@@ -23,15 +23,16 @@ class CampaignNew extends Component {
             await factory.methods                               // create campaign on the contract
                 .createCampaign(this.state.minimumContribution)
                 .send({ 
-                    from:accounts[0]
+                    from: accounts[0]
                 });
-                
+                //console.log(accounts);
                 Router.pushRoute('/');                          //redirect user to index rout
         } catch (err) {
             this.setState({ errorMessage: err.message });
+            //console.log(err.message);
         }
 
-        this.setState({ loading: false})
+        this.setState({ loading: false });
     };
 
 
@@ -52,19 +53,19 @@ class CampaignNew extends Component {
                             onChange={event => 
                                 this.setState({minimumContribution: event.target.value}) 
                             }
-                        />                        
+                        />
                     </Form.Field>
 
                     <Message error header='Oops!' content={this.state.errorMessage} />
 
-                    <Button type='Create' primary loading={this.state.loading}>Create !</Button>
+                    <Button primary loading={this.state.loading} primary>
+                    Create !
+                    </Button>
                     
-
-
                 </Form>
             </Layout>
         ); 
     }
 }
 
-export default CampaignNew
+export default CampaignNew;

@@ -26,7 +26,7 @@ contract Campaign {
         address recipient;                  //address of the vendor that the money will be sent to
         bool complete;                      //TRUE if the request has been already processed(money sent)
         uint approvalCount;
-        mapping(address=>bool)approvals;
+        mapping(address=>bool) approvals;
     }
     
     Request[] public requests;
@@ -100,10 +100,4 @@ contract Campaign {
     function getRequestCount() public view returns(uint) {
         return requests.length;
     }
-    
-
-
-
-
-
 }

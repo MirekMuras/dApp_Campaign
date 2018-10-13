@@ -52,6 +52,7 @@ describe('Campaign', () => {
     //@dev:
     it('marks caller as the campaihn manager', async () => {
         const manager = await campaign.methods.manager().call()
+        console.log(accounts[0]);
         assert.equal(accounts[0], manager);
     });
 

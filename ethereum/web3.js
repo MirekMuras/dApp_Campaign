@@ -4,13 +4,14 @@ import Web3 from'web3';
 /*var provider = (window.web3.currentProvider);
 const web3 = new Web3(provider);*/
 
-//@dwv-info: 'let' means reasign the variable
+//@dwv-info: 'let' keyword means that we want to reasign this variable
 let web3;
 
 //@dev-info: 'typeof' means the string is undefined on server 
-if (typeof windows !== 'undefined' && typeof window.web3 !== 'undefined' ) {
+if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined' ) {
     // we are in the browser AND MetaMask is running.
     web3 = new Web3(window.web3.currentProvider);
+    console.log(`Web3 is : ${web3}`);
 } else {
     // we are on the server 'OR' the user is not running MetaMask
     const provider = new Web3.providers.HttpProvider(
